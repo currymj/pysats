@@ -75,6 +75,14 @@ class GsvmTest(unittest.TestCase):
         for bidder_id in bidder_ids:
             print("Bidder: ", bidder_id)
         self.assertEqual(len(bidder_ids), 7)
+    
+    def test_gsvm_numitems(self):
+        instance_seed = 111
+        gsvm = self.pysats.create_gsvm(seed=instance_seed, number_of_national_bidders=1, number_of_regional_bidders=1, isLegacyGSVM=False, size_interval=1)
+        print("\n\nTEST GSVM numitems | Seed:", instance_seed)
+        numitems = len(gsvm.get_good_ids())
+        print("Numitems: ", numitems)
+        self.assertEqual(numitems, 3)
 
     def test_goods_of_interest(self):
         instance_seed = 222

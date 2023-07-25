@@ -15,6 +15,8 @@ class _Gsvm(SimpleModel, metaclass=MetaJavaClass):
     )
     setLegacyGSVM = JavaMethod("(Z)V")
 
+    setSizeInterval = JavaMethod("(I)V")
+
     def __init__(
         self,
         seed,
@@ -22,10 +24,12 @@ class _Gsvm(SimpleModel, metaclass=MetaJavaClass):
         number_of_regional_bidders,
         isLegacyGSVM=False,
         store_files=False,
+        size_interval=None,
     ):
         self.number_of_national_bidders = number_of_national_bidders
         self.number_of_regional_bidders = number_of_regional_bidders
         self.isLegacy = isLegacyGSVM
+        self.size_interval = size_interval
         super().__init__(
             seed=seed,
             mip_path="org.spectrumauctions.sats.opt.model.gsvm.GSVMStandardMIP",
@@ -36,6 +40,8 @@ class _Gsvm(SimpleModel, metaclass=MetaJavaClass):
         self.setNumberOfNationalBidders(self.number_of_national_bidders)
         self.setNumberOfRegionalBidders(self.number_of_regional_bidders)
         self.setLegacyGSVM(self.isLegacy)
+        if self.size_interval is not None:
+            self.setSizeInterval(self.size_interval)
 
     def get_model_name(self):
         return "GSVM"

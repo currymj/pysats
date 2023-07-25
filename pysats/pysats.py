@@ -34,6 +34,7 @@ class PySats:
         seed=None,
         number_of_national_bidders=1,
         number_of_regional_bidders=5,
+        number_of_columns=None,
         isLegacyLSVM=False,
         store_files=False,
     ):
@@ -45,6 +46,7 @@ class PySats:
             number_of_regional_bidders,
             isLegacyLSVM,
             store_files,
+            number_of_columns = number_of_columns
         )
 
     def create_gsvm(
@@ -54,6 +56,7 @@ class PySats:
         number_of_regional_bidders=6,
         isLegacyGSVM=False,
         store_files=False,
+        size_interval=None,
     ):
         from .gsvm import _Gsvm
 
@@ -63,6 +66,7 @@ class PySats:
             number_of_regional_bidders,
             isLegacyGSVM,
             store_files,
+            size_interval=size_interval
         )
 
     def create_mrvm(
