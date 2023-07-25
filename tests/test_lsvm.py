@@ -74,6 +74,16 @@ class LsvmTest(unittest.TestCase):
         for bidder_id in bidder_ids:
             print("Bidder: ", bidder_id)
         self.assertEqual(len(bidder_ids), 6)
+    
+    def test_lsvm_numitems(self):
+        instance_seed = 3
+        lsvm = self.pysats.create_lsvm(seed=instance_seed, isLegacyLSVM=False, number_of_columns=3)
+        print("\n\nTEST LSVM num items | Seed:", instance_seed)
+        bidder_ids = lsvm.get_bidder_ids()
+        for bidder_id in bidder_ids:
+            print("Bidder: ", bidder_id)
+        self.assertEqual(len(bidder_ids), 6)
+        self.assertEqual(len(lsvm.get_good_ids()), 9)
 
     def test_goods_of_interest(self):
         instance_seed = 4
